@@ -1,10 +1,7 @@
-let num = 266219, lastNumber, result = 1;
+'use strict';
 
-while (num) {
-  lastNumber = num % 10;
-  result *= lastNumber;
-  num = (num - lastNumber) / 10;
-}
+let a = 5;
+console.log('a: ', a);
 
-result = String(result**3);
-console.log(result.substring(0, 2));
+confirm();
+console.log('confirm(): ', confirm());
