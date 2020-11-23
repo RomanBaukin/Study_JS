@@ -1,13 +1,9 @@
 'use strict';
 
 let lang = prompt('Введите "ru" или "en"'),
-  arrDayOfTheWeek = [
-    ['Понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота', 'воскресенье'],
-    ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-  ],
+  dayOfTheWeekArray = [],
   dayOfTheWeekIfElse,
   dayOfTheWeekSwitchCase,
-  dayOfTheWeekArray = lang === 'ru' ? arrDayOfTheWeek[0] : arrDayOfTheWeek[1],
   namePerson = prompt('Введите имя'),
   statusPerson;
 
@@ -25,9 +21,12 @@ switch (lang) {
     dayOfTheWeekSwitchCase = 'Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday';
 }
 
+dayOfTheWeekArray.ru = 'Понедельник, вторник, среда, четверг, пятница, суббота, воскресенье';
+dayOfTheWeekArray.en = 'Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday';
+
 statusPerson = namePerson === 'Артем' ? 'директор' : namePerson === 'Максим' ? 'преподаватель' : 'студент';
 
 console.log(dayOfTheWeekIfElse);
 console.log(dayOfTheWeekSwitchCase);
-console.log(dayOfTheWeekArray);
+console.log(dayOfTheWeekArray[lang]);
 console.log(statusPerson);
