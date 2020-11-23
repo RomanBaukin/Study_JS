@@ -8,7 +8,7 @@ let lang = prompt('Введите "ru" или "en"'),
   dayOfTheWeekIfElse,
   dayOfTheWeekSwitchCase,
   dayOfTheWeekArray = lang === 'ru' ? arrDayOfTheWeek[0] : arrDayOfTheWeek[1],
-  namePerson = prompt('Введите имя или статус'),
+  namePerson = prompt('Введите имя'),
   statusPerson;
 
 if (lang === 'ru') {
