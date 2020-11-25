@@ -3,10 +3,20 @@
 // Первое задание
 let arr = [];
 
+let isNumber = function (n) {
+  //проверяет, являются ли входящие данные числом
+  return !isNaN(parseFloat(n)) && isFinite(n);
+};
+
 let outputNumberTwoAndFour = function () {
   let indexArr = 0;
+  let multiDigitNumber;
   for (let i = 0; i < 7; i++) {
-    arr[i] = prompt('Введите многозначное число');
+    do {
+      multiDigitNumber = prompt('Введите любое многозначное число');
+    } while (!isNumber(multiDigitNumber));
+
+    arr[i] = multiDigitNumber;
   }
 
   while (indexArr < 7) {
@@ -20,7 +30,11 @@ let outputNumberTwoAndFour = function () {
 outputNumberTwoAndFour();
 
 // Второе задание
-let inputNumber = +prompt('Введите любое многозначное число', '100');
+let inputNumber;
+
+do {
+  inputNumber = prompt('Введите любое многозначное число', '100');
+} while (!isNumber(inputNumber));
 
 let naturalNumbers = function (number) {
   for (let i = 2; i <= number; i++) {
@@ -36,4 +50,4 @@ let naturalNumbers = function (number) {
   }
 };
 
-naturalNumbers(inputNumber);
+naturalNumbers(+inputNumber);
