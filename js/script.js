@@ -1,9 +1,49 @@
 'use strict';
 
 //Переменные
-let money;
+let money,
+  calculateButton = document.getElementById('start'),
+  incomeAddButton = document.getElementsByTagName('button')[0],
+  exspensesAddButton = document.getElementsByTagName('button')[1],
+  depositCheckBox = document.querySelector('#deposit-check'),
+  inputAdditionalIncome = document.querySelectorAll('.additional_income-item'),
+  budgetMonthValue = document.getElementsByClassName('budget_month-value')[0],
+  budgetDayValue = document.getElementsByClassName('budget_day-value')[0],
+  exspensesMonthValue = document.getElementsByClassName('expenses_month-value')[0],
+  additionalIncomValue = document.getElementsByClassName('additional_income-value')[0],
+  additionalExspensesValue = document.getElementsByClassName('additional_expenses-value')[0],
+  incomePeriodValue = document.getElementsByClassName('income_period-value')[0],
+  targetMonthValue = document.getElementsByClassName('target_month-value')[0],
+  salaryAmount = document.querySelector('.salary-amount'),
+  incomeTitle = document.querySelector('input.income-title'),
+  incomeAmount = document.querySelector('.income-amount'),
+  expensesTitle = document.querySelector('input.expenses-title'),
+  expensesAmount = document.querySelector('.expenses-amount'),
+  additionalExpensesItem = document.querySelector('.additional_expenses-item'),
+  targetAmount = document.querySelector('.target-amount'),
+  periodSelect = document.querySelector('.period-select');
 
-//Функции
+console.log('calculateButton: ', calculateButton);
+console.log('incomeAddButton: ', incomeAddButton);
+console.log('exspensesAddButton: ', exspensesAddButton);
+console.log('depositCheckBox: ', depositCheckBox);
+console.log('inputAdditionalIncome: ', inputAdditionalIncome);
+console.log('budgetMonthValue: ', budgetMonthValue);
+console.log('budgetDayValue: ', budgetDayValue);
+console.log('exspensesMonthValue: ', exspensesMonthValue);
+console.log('additionalIncomValue: ', additionalIncomValue);
+console.log('additionalExspensesValue: ', additionalExspensesValue);
+console.log('incomePeriodValue: ', incomePeriodValue);
+console.log('targetMonthValue: ', targetMonthValue);
+console.log('salaryAmount: ', salaryAmount);
+console.log('incomeTitle: ', incomeTitle);
+console.log('incomeAmount: ', incomeAmount);
+console.log('expensesTitle: ', expensesTitle);
+console.log('expensesAmount: ', expensesAmount);
+console.log('additionalExpensesItem: ', additionalExpensesItem);
+console.log('targetAmount: ', targetAmount);
+
+// Функции;
 let isNumber = function (n) {
   //проверяет, являются ли входящие данные числом
   return !isNaN(parseFloat(n)) && isFinite(n);
