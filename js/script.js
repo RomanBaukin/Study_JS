@@ -22,7 +22,9 @@ let start = document.getElementById('start'),
   additionalExpensesItem = document.querySelector('.additional_expenses-item'),
   targetAmount = document.querySelector('.target-amount'),
   periodSelect = document.querySelector('.period-select'),
-  periodAmount = document.querySelector('.period-amount');
+  periodAmount = document.querySelector('.period-amount'),
+  textInput = document.querySelectorAll('[placeholder=Наименование]'),
+  numberInput = document.querySelectorAll('[placeholder=Сумма]');
 
 // Функции;
 let isNumber = function (n) {
@@ -65,11 +67,13 @@ let appData = {
     additionalExspensesValue.value = appData.addExpenses.join(', ');
     additionalIncomValue.value = appData.addIncome.join(', ');
     targetMonthValue.value = Math.ceil(appData.getTargetMonth());
-    periodSelect.addEventListener('input', appData.calcPeriod);
-    incomePeriodValue.value = appData.calcPeriod();
+    periodSelect.addEventListener('input', function () {
+      incomePeriodValue.value = appData.calcPeriod();
+    });
   },
   addExpensesBlock: function () {
     let cloneExpensesItem = expensesItems[0].cloneNode(true);
+    cloneExpensesItem.children[0].value = cloneExpensesItem.children[1].value = '';
     expensesItems[0].parentNode.insertBefore(cloneExpensesItem, expensesPlus);
     expensesItems = document.querySelectorAll('.expenses-items');
     if (expensesItems.length === 3) {
@@ -78,11 +82,28 @@ let appData = {
   },
   addIncomeBlock: function () {
     let cloneIncomeItem = incomeItems[0].cloneNode(true);
+    cloneIncomeItem.children[0].value = cloneIncomeItem.children[1].value = '';
+    console.log('cloneIncomeItem: ', cloneIncomeItem);
+
     incomeItems[0].parentNode.insertBefore(cloneIncomeItem, incomePlus);
     incomeItems = document.querySelectorAll('.income-items');
     if (incomeItems.length === 3) {
       incomePlus.style.display = 'none';
     }
+  },
+  inputOnlyRus: function () {
+    textInput.forEach(function (item) {
+      item.addEventListener('input', function () {
+        item.value = item.value.replace(/[^а-я]/, '');
+      });
+    });
+  },
+  inputOnlyNumber: function () {
+    numberInput.forEach(function (item) {
+      item.addEventListener('input', function () {
+        item.value = item.value.replace(/[^0-9]/, '');
+      });
+    });
   },
   changePeriodAmount: function () {
     periodAmount.textContent = periodSelect.value;
@@ -177,19 +198,8 @@ start.addEventListener('click', function () {
   }
 });
 
+appData.inputOnlyRus();
+appData.inputOnlyNumber();
 expensesPlus.addEventListener('click', appData.addExpensesBlock);
 incomePlus.addEventListener('click', appData.addIncomeBlock);
 periodSelect.addEventListener('input', appData.changePeriodAmount);
-
-// console.log(`Период равен ${appData.period} месяцев`);
-// console.log(`Цель заработать ${appData.mission} рублей`);
-// console.log(`Возможные расходы: ${appData.addExpenses.join(', ')}`);
-// console.log(`Дневной бюджет равен ${appData.budgetDay} р.`);
-// console.log(`Расходы за месяц: ${appData.expensesMonth} р.`);
-// console.log(`Месячный бюджет равен ${appData.budgetMonth} р.`);
-// console.log(appData.getStatusIncome());
-// console.log('Наша программа включает в себя данные:');
-
-// for (let key in appData) {
-//   console.log(key + ': ' + appData[key]);
-// }
