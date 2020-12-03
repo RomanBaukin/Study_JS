@@ -65,8 +65,10 @@ let appData = {
     additionalExspensesValue.value = appData.addExpenses.join(', ');
     additionalIncomValue.value = appData.addIncome.join(', ');
     targetMonthValue.value = Math.ceil(appData.getTargetMonth());
-    periodSelect.addEventListener('input', appData.calcPeriod);
     incomePeriodValue.value = appData.calcPeriod();
+    periodSelect.addEventListener('input', function () {
+      incomePeriodValue.value = appData.calcPeriod();
+    });
   },
   addExpensesBlock: function () {
     let cloneExpensesItem = expensesItems[0].cloneNode(true);
@@ -180,16 +182,3 @@ start.addEventListener('click', function () {
 expensesPlus.addEventListener('click', appData.addExpensesBlock);
 incomePlus.addEventListener('click', appData.addIncomeBlock);
 periodSelect.addEventListener('input', appData.changePeriodAmount);
-
-// console.log(`Период равен ${appData.period} месяцев`);
-// console.log(`Цель заработать ${appData.mission} рублей`);
-// console.log(`Возможные расходы: ${appData.addExpenses.join(', ')}`);
-// console.log(`Дневной бюджет равен ${appData.budgetDay} р.`);
-// console.log(`Расходы за месяц: ${appData.expensesMonth} р.`);
-// console.log(`Месячный бюджет равен ${appData.budgetMonth} р.`);
-// console.log(appData.getStatusIncome());
-// console.log('Наша программа включает в себя данные:');
-
-// for (let key in appData) {
-//   console.log(key + ': ' + appData[key]);
-// }
