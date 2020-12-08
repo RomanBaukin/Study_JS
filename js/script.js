@@ -79,22 +79,17 @@ let appData = {
     this.incomeMonth = 0;
     this.percentDeposit = 0;
     this.moneyDeposit = 0;
-    this.mission = 0;
+    this.mission = 1;
     this.income = {};
     this.addIncome = [];
     this.expenses = {};
     this.addExpenses = [];
 
+    this.showResult();
+
     periodSelect.value = 1;
     periodAmount.textContent = periodSelect.value;
-    // budgetMonthValue.value = 0;
-    // budgetDayValue.value = 0;
-    // exspensesMonthValue.value = 0;
-    // additionalExspensesValue.value = '';
-    // additionalIncomValue.value = '';
-    // targetMonthValue.value = 0;
-    // incomePeriodValue.value = 0;
-    // incomePeriodValue.value = 0;
+    targetMonthValue.value = 0;
 
     expensesItems.forEach(function (item, index) {
       if (index !== 0) {
@@ -117,8 +112,6 @@ let appData = {
       item.value = '';
       item.removeAttribute('disabled', 'disabled');
     });
-
-    this.showResult();
   },
   showResult: function () {
     budgetMonthValue.value = this.budgetMonth;
