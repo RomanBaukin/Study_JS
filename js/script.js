@@ -57,8 +57,7 @@ AppData.prototype.start = function () {
       item.setAttribute('disabled', 'disabled');
     });
     this.budget = +salaryAmount.value;
-    this.getExpenses();
-    this.getIncome();
+    this.getExpInc();
     this.getExpensesMonth();
     this.getAddExpenses();
     this.getAddIncome();
@@ -176,53 +175,42 @@ AppData.prototype.changePeriodAmount = function () {
   periodAmount.textContent = periodSelect.value;
 };
 
-AppData.prototype.getExpenses = function () {
-  const _this = this;
-  expensesItems.forEach(function (item) {
-    let itemExpenses = item.querySelector('.expenses-title').value;
-    let cashExpenses = item.querySelector('.expenses-amount').value;
+AppData.prototype.getExpInc = function () {
+  const count = (item) => {
+    const startStr = item.className.split('-')[0];
+    const itemTitle = item.querySelector(`.${startStr}-title`).value;
+    const itemAmount = item.querySelector(`.${startStr}-amount`).value;
 
-    if (itemExpenses !== '' && cashExpenses !== '') {
-      _this.expenses[itemExpenses] = cashExpenses;
+    if (itemTitle !== '' && itemAmount !== '') {
+      this[startStr][itemTitle] = itemAmount;
     }
-  });
-};
+  };
 
-AppData.prototype.getIncome = function () {
-  const _this = this;
-  incomeItems.forEach(function (item) {
-    let itemIncome = item.querySelector('.income-title').value;
-    let cashIncome = item.querySelector('.income-amount').value;
+  incomeItems.forEach(count);
 
-    if (itemIncome !== '' && cashIncome !== '') {
-      _this.income[itemIncome] = cashIncome;
-    }
-  });
+  expensesItems.forEach(count);
 
-  for (let key in _this.income) {
-    _this.incomeMonth += +_this.income[key];
+  for (const key in this.income) {
+    this.incomeMonth += +this.income[key];
   }
 };
 
 AppData.prototype.getAddExpenses = function () {
   let addExpenses = additionalExpensesItem.value.split(',');
-  const _this = this;
 
-  addExpenses.forEach(function (item) {
+  addExpenses.forEach((item) => {
     item = item.trim();
     if (item !== '') {
-      _this.addExpenses.push(item);
+      this.addExpenses.push(item);
     }
   });
 };
 
 AppData.prototype.getAddIncome = function () {
-  const _this = this;
-
-  additionalIncomeItem.forEach(function (item) {
+  additionalIncomeItem.forEach((item) => {
     let itemValue = item.value.trim();
     if (itemValue !== '') {
-      _this.addIncome.push(itemValue);
+      this.addIncome.push(itemValue);
     }
   });
 };
